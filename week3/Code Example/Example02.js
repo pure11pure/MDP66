@@ -1,7 +1,7 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StatusBar, StyleSheet, FlatList } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, StatusBar, StyleSheet } from 'react-native';
 
-export default function Example03(){
+export default function Example02(){
     const students = [
         {id: 1, name: 'Luffy'}, 
         {id: 2, name: 'Zoro'}, 
@@ -14,26 +14,16 @@ export default function Example03(){
         {id: 9, name: 'Brook'}];
     return (
         <SafeAreaView style={styles.container}>
-            <FlatList 
-                data={students} 
-                keyExtractor={(item)=> item.id} 
-                renderItem={({item}) => {
-                    return (
-                        <View style={styles.child}>
+            <ScrollView contentContainerStyle={styles.scrollview}>
+                {/* นำข้อมูลจาก array มาแสดง */}
+                {students.map((item) => {
+                    return(
+                        <View key={item.id} style={styles.child}>
                             <Text>{item.name}</Text>
                         </View>
-                    )
-                }}
-                // ItemSeparatorComponent={() => {
-                //     return(
-                //         <View style={{
-                //             borderBottomColor: 'red',
-                //             borderBottomWidth: 10,
-                //            // marginHorizontal: 10
-                //         }}
-                //         />)
-                // }}
-            />
+                    );
+                })}
+            </ScrollView>
         </SafeAreaView>
 
     );
@@ -56,6 +46,6 @@ const styles = StyleSheet.create({
     margin: 5,
     borderWidth: 3,
     borderRadius: 20,
-    backgroundColor: 'orange'
+    backgroundColor: 'lightgray'
   }
 })
