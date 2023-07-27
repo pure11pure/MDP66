@@ -6,10 +6,10 @@ import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, SafeAreaView
 export default function App() {
 
     const programs = [
-        { id: 1, image: '../assets/img/course-bach-it.jpg', name: 'Information Technology' },
-        { id: 2, image: '../assets/img/course-bach-dsba.jpg', name: 'Data Science and Business Analytics' },
-        { id: 3, image: '../assets/img/course-bach-bit.jpg', name: 'Business Information Technology' },
-        { id: 4, image: '../assets/img/course-bach-ait.jpg', name: 'Artificial Intelligence Technology' },
+        { id: 1, image: require('../assets/img/course-bach-it.jpg'), name: 'Information Technology' },
+        { id: 2, image: require('../assets/img/course-bach-dsba.jpg'), name: 'Data Science and Business Analytics' },
+        { id: 3, image: require('../assets/img/course-bach-bit.jpg'), name: 'Business Information Technology' },
+        { id: 4, image: require('../assets/img/course-bach-ait.jpg'), name: 'Artificial Intelligence Technology' },
     ]
 
     return (
@@ -22,10 +22,11 @@ export default function App() {
             <FlatList
                 data={programs}
                 keyExtractor={(item) => item.id}
-                renderItem={({ item }) => {
+                renderItem={({item}) => {
                     return (
                         <View>
-                            {/* <Image style={styles.image} source={require(item.image)} /> */}
+                            <Image style={styles.image} source={item.image} />
+                            {/* <Image style={styles.image} source={require(`${item.image}`)} /> */}
                             <TouchableOpacity>
                                 <Text style={styles.main_text}>{item.name}</Text>
                             </TouchableOpacity>
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        width: 400
+        // width: 400
     },
 
     main_text: {
@@ -70,20 +71,18 @@ const styles = StyleSheet.create({
     logo: {
         height: 50,
         width: 61,
-        // marginVertical: 40,
     },
 
     top_text: {
         fontSize: 40,
         fontWeight: 'bold',
-        // marginVertical: 40,
         color: '#000099',
     },
 
     top_bar: {
         height: 130,
         backgroundColor: '#99CCFF',
-        width: 400,
+        // width: 400,
         flexDirection: 'row',
         display: 'flex',
         justifyContent: 'space-between',

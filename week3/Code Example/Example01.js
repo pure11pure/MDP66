@@ -10,7 +10,7 @@ import {
 } from "react-native";
 export default function Example01() {
   const [text, setText] = useState("");
-  const [array, setArray] = useState("5555");
+  const [array, setArray] = useState("");
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 18 }}>Example 01</Text>
@@ -26,14 +26,23 @@ export default function Example01() {
       <View
         style={styles.btncontainer}>
         <Button
-          onPress={()=>setArray(array + "/-/" + text)}
+          onPress={() => setArray(array + "/-/" + text)}
           title="บันทึก"
         />
       </View>
       <ScrollView>
-        <Text >{array.split("/-/")}</Text>        
+        {/* <Text >{array.split("/-/")}</Text> */}
+        {
+          array.split("/-/").map((item) => {
+            return (
+              <View>
+                <Text>{item}</Text>
+              </View>
+            )
+          })
+        }
       </ScrollView>
-      
+
       {/* เพิ่ม ----------- */}
     </View>
   );
