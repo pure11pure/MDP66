@@ -10,32 +10,34 @@ export default function App() {
   const [guessRounds, setGuessRounds] = useState(0);
 
   // ฟังก์ชันสำหรับการเริ่มเกมใหม่
-  // const configureNewGameHandler = () => {
-  //   ...เพิ่มโค้ด...อัพเดทค่าสเตท guessRounds ให้เป็น 0
-  //   ...เพิ่มโค้ด...อัพเดทค่าสเตท correctNumber ให้เป็น 0
-  // };
+  const configureNewGameHandler = () => {
+    setGuessRounds(0)
+    setCorrectNumber(0)
+  };
 
   const startGameHandler = (rndNum) => {
     setCorrectNumber(rndNum);
+    console.log("---rnd", rndNum)
   };
 
   // ฟังก์ชันสำหรับจัดการการจบเกม
-  // const gameOverHandler = (numOfRounds) => {
-  //   ...เพิ่มโค้ด...อัพเดทค่าสเตท guessRounds ด้วยค่า numOfRounds ที่รับมา
-  // };
+  const gameOverHandler = (numOfRounds) => {
+    setGuessRounds(numOfRounds)
+    console.log("app",numOfRounds)
+  };
 
   let content = <StartGameScreen onStartGame={startGameHandler} />;
 
   if (correctNumber > 0 && guessRounds <= 0) {
     // ทำการเรียก GameScreen
-    // content = (
-    //   <GameScreen ...เขียนโค้ดเพิ่ม... />
-    // );
+    content = (
+      <GameScreen answer={correctNumber} correctNumber={correctNumber} onGameOver={gameOverHandler} />
+    );
   } else if (guessRounds > 0) {
     // ทำการเรียก GameOverScreen
-    // content = (
-    //   <GameOverScreen ...เขียนโค้ดเพิ่ม... />
-    // );
+    content = (
+      <GameOverScreen rounds={guessRounds} answer={correctNumber} onRestart={configureNewGameHandler} />
+    );
   }
 
   return (

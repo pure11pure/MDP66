@@ -8,7 +8,9 @@ const StartGameScreen = (props) => {
       <Button
         title="START GAME"
         onPress={() => {
-          // ...เพิ่มโค้ด...
+          numRandom = Math.floor(Math.random()*100)
+          console.log("---SGS",numRandom)
+          props.onStartGame(numRandom)
         }}
       />
     </View>

@@ -5,7 +5,14 @@ const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
       <Text>The Game is Over!</Text>
-      {/* ...เพิ่มโค้ด สรุปผลลัพธ์การเล่นเกม และมีปุ่มให้เริ่มเกมใหม่ได้... */}
+      <Text>Number of rounds: {props.rounds}</Text>
+      <Text>NCorrect Number was: {props.answer}</Text>
+      <Button
+        title="NEW GAME"
+        onPress={() => {
+          props.onRestart()
+        }}
+      />
     </View>
   );
 };
