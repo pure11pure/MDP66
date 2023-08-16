@@ -24,7 +24,10 @@ const GameScreen = (props) => {
         <View style={styles.numberContainer}>
           <Text style={styles.number}>{selectedNumber}</Text>
         </View>
-        <Text>{(props.correctNumber > enteredValue) ? "The answer is greater. Round: "+rounds : "The answer is lower. Round: "+rounds}</Text>
+        {/* <View style={styles.numberContainer}>
+          <Text style={styles.number}>{props.correctNumber}</Text>
+        </View> */}
+        <Text>{(props.correctNumber > selectedNumber) ? "The answer is greater. Round: "+rounds : "The answer is lower. Round: "+rounds}</Text>
       </View>
     );
   }
@@ -42,8 +45,8 @@ const GameScreen = (props) => {
   // ฟังก์ชันสำหรับอัพเดทค่าสเตทต่างๆ เมื่อผู้เล่นกด confirm
   const confirmInputHandler = () => {
     setSelectedNumber(enteredValue) //
-    console.log("en2",enteredValue)
-    console.log("se",selectedNumber)
+    console.log("enteredValue :",enteredValue)
+    console.log("selectedNumber :",selectedNumber)
     setConfirmed(true)
     setEnteredValue('')
     setRounds(rounds+1)
