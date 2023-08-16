@@ -16,17 +16,19 @@ const MealDetailScreen = ({route, navigation}) => {
       <Text>{menu}</Text>
       <Image source={{ uri: route.params.categoryImage }} style={styles.image}/>
       {step.map((step, index) => (
-        <Text key={index}>
+        <Text key={index} style={styles.step}>
           {index + 1}. {step}
         </Text>
       ))}
       <Button
+        // style={styles.btn_back}
         title="Go Back to Categories"
         onPress={() => {
           // เขียนโค้ดเพิ่ม
           //("MealDetail", {...}) --> การเปลี่ยนหน้าจอ โดย ส่งค่าพารามิเตอร์
           navigation.navigate("Categories")
         }}
+        
       />
     </View>
   );
@@ -42,7 +44,14 @@ const styles = StyleSheet.create({
     width: 300,
     height: 200,
     marginVertical:20
-},
+  },
+  step:{
+    marginVertical:10
+  },
+  // btn_back:{
+  //   margin:50
+  // },
+
 });
 
 export default MealDetailScreen;
