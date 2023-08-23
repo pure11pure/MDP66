@@ -36,12 +36,13 @@ const CategoryMealsScreen = ({route, navigation}) => {
 
   // ...รับข้อมูล id ของประเภทอาหาราจากหน้า CategoriesScreen...
   const catId = route.params.categoryId;
-  console.log(catId);
+  console.log("catId"+catId);
 
   const displayedMeals = MEALS.filter(
     (meal) => meal.categoryIds.indexOf(catId) >= 0
+    // meal.categoryIds.includes(catId)
   );
-  console.log(displayedMeals);
+  console.log("displayedMeals: "+displayedMeals.length);
   // console.log(displayedMeals[0].imageUrl);
 
 
