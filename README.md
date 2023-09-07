@@ -11,9 +11,9 @@ npx expo start
 Emulator (Android Studio), web และ Expo Go (Client)
 
 <b>การติดตั้ง library และ dependencies เพื่อใช้ในการทำ Navigation ให้ครบถ้วน</b>
-expo install @react-navigation/native
-expo install react-native-screens react-native-safe-area-context
-expo install @react-navigation/native-stack
+npm install @react-navigation/native
+npm install react-native-screens react-native-safe-area-context
+npm install @react-navigation/native-stack
 
 
 <b>ติดตั้ง react-navigation-tabs</b>

@@ -8,13 +8,13 @@ const Example04 = (props) => {
     console.log("spring..");
     Animated.spring(springVal, {
       toValue: 1,
-      friction: 1,
-      tension: 10,
-      // bounciness: 30,
-      // speed: 20,
+      friction: 1, //การเด้ง
+      tension: 10, //ตวบคุมความเร็ว
+      // bounciness: 30, //ตวบคุมความเร็ว
+      // speed: 20, //ควบคุมการกระเด้ง
       useNativeDriver: true,
     }).start(() => {
-      springVal.setValue(0.3);
+      springVal.setValue(0.2);
     });
   };
 
