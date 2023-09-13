@@ -5,9 +5,14 @@ import Example01 from "./examples/Example01";
 import Example02 from "./examples/Example02";
 import Example03 from "./examples/Example03";
 import Example04 from "./examples/Example04";
+import Lab from "./examples/Lab";
+
+
+// Gesture : การควบคุมแอปพลิเคชันด้วยการเคลื่อนไหวของมือ
 
 export default function App() {
-  return <Example04 />;
+  // return <Example02 />;
+  return <Lab />;
 }
 
 const styles = StyleSheet.create({
