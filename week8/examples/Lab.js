@@ -12,6 +12,7 @@ const Example02 = () => {
 
         //1)-----------------------เริ่มเมื่อผู้ใช้แตะ object
         onStartShouldSetPanResponder: () => true,
+        
 
 
         //2)------------------------เมื่อมีการลาก object
@@ -21,8 +22,12 @@ const Example02 = () => {
                 x: pan.x._value,
                 y: pan.y._value,
             });
+            console.log("|----------start-----------|")
+            console.log("|onPanResponderGrant|")
+            // console.log("onPanResponderGrant 1",pan)
             //2.2)และกำหนดค่า Offset ใหม่เป็น (0, 0)
             pan.setValue({ x: 0, y: 0 });
+            console.log("onPanResponderGrant 2",pan)
             // //2.3)สลับขนาด (scaling) เมื่อผู้ใช้เริ่มการเคลื่อนที่
             // Animated.spring(scale, {
             //     //2.3.1) กำหนดให้ค่าของ scale เปลี่ยนไปเป็น 1.5 เมื่อกล่องถูกลาก
@@ -55,6 +60,7 @@ const Example02 = () => {
             else {
                 pan.x.setValue(gestureState.dx);
                 pan.y.setValue(gestureState.dy);
+                // console.log('onPanResponderMove-->',gestureState.dx, " : ", gestureState.dy)
             }
         },
 
@@ -68,6 +74,11 @@ const Example02 = () => {
                 friction: 3,//ค่ามาก-แรงต้านมาก-เด้งน้อย
                 useNativeDriver: false,
             }).start();
+
+            console.log("|onPanResponderRelease|")
+            console.log("onPanResponderRelease", pan)
+            console.log("|----------end-----------|")
+
         },
     });
 
