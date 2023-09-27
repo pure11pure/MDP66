@@ -96,7 +96,7 @@ const MealList = ({route, navigation}) => {
   // console.log(catId);
 
   const displayedMeals = MEALS.filter(
-    (meal) => meal.categoryIds.indexOf('c3') >= 0
+    (meal) => meal.categoryIds.indexOf('c2') >= 0
   );
   console.log(displayedMeals);
   // console.log(displayedMeals[0].imageUrl);
