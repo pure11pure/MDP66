@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/CustomHeaderButton";
+import { FontAwesome } from '@expo/vector-icons';
 
 import React from "react";
 
@@ -19,6 +20,9 @@ export default function MyNavigator() {
           tabBarActiveTintColor: "darkblue",
           tabBarStyle: { backgroundColor: "lightblue" },
           tabBarLabelStyle: { fontSize: 15 },
+          tabBarIcon: ({ color, size }) => {
+            return <FontAwesome name="caret-down" size={24} color={color} />;
+          },
           // headerShown: false,
         }}
       >
@@ -31,6 +35,9 @@ export default function MyNavigator() {
                 <Item title="Tab_1" iconName="ios-alarm" onPress={() => {}} />
               </HeaderButtons>
             ),
+            // tabBarIcon: ({ color, size }) => {
+            //   return <FontAwesome name="caret-down" size={24} color={color} />;
+            // },
           }}
         />
         <Tab.Screen name="Tab_2" component={Tab2} />

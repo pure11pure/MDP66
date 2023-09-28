@@ -1,5 +1,7 @@
 import { INC_COUNTER } from "../actions/testAction";
 
+
+//กำหนด state เริ่มต้นที่จะเก็บใน store
 const initialState = {
   counter: 0,
   name: "KMITL",

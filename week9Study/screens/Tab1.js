@@ -1,4 +1,7 @@
 import React from "react";
+//import สิ่งที่จำเป็นสำหรับการเรียกใช้ข้อมูลใน Store
+//useSelector -- ดึงข้อมูล state จาก store 
+//useDispatch -- จัดการอื่นๆ กับข้อมูลใน store, คอมโพเนนต์จะส่ง Action ที่ต้องการ
 import { useSelector, useDispatch } from "react-redux";
 import { increaseCounter } from "../store/actions/testAction";
 import { View, Text, StyleSheet, Button } from "react-native";
