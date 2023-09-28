@@ -7,7 +7,8 @@ import {
   Platform,
   FlatList,
 } from "react-native";
-import { CATEGORIES, MEALS } from "../data/dummy-data";
+// import { CATEGORIES, MEALS } from "../data/dummy-data"; //จพะเปลี่ยนเป็นการเรียนจาก store
+import { useSelector } from "react-redux"; 
 import MealItem from "../components/MealItem";
 
 const CategoryMealsScreen = ({route, navigation}) => {
@@ -22,8 +23,14 @@ const CategoryMealsScreen = ({route, navigation}) => {
         onSelectMeal={() => {
           // เขียนโค้ดเพิ่ม
           //("MealDetail", {...}) --> การเปลี่ยนหน้าจอ โดย ส่งค่าพารามิเตอร์
-          navigation.navigate("MealDetail", { categoryImage : itemData.item.imageUrl , categoryTitle: itemData.item.title , categorySteps: itemData.item.steps})
-          console.log("PAGE: CategoryMealsScreen.js --> "+"categoryId : " + itemData.item.id , "categoryTitle : " + itemData.item.title)
+          navigation.navigate("MealDetail", { 
+            categoryImage : itemData.item.imageUrl , 
+            mealTitle: itemData.item.title , 
+            categorySteps: itemData.item.steps, 
+            mealId : itemData.item.id})
+          console.log("----->SEND: MealDetailScreen.js --> "+
+          "categoryId : " + itemData.item.id , 
+          "categoryTitle : " + itemData.item.title)
         }}
       />
 
@@ -34,14 +41,17 @@ const CategoryMealsScreen = ({route, navigation}) => {
     );
   };
 
+
+  console.log("|PAGE : CategoryMealsScreen.js---------------------------------------|")
   // ...รับข้อมูล id ของประเภทอาหาราจากหน้า CategoriesScreen...
   const catId = route.params.categoryId;
-  console.log(catId);
+  console.log("categoryID : ", catId);
 
-  const displayedMeals = MEALS.filter(
+  const availableMeals = useSelector(state => state.meals.filteredMeals)
+  const displayedMeals = availableMeals.filter(
     (meal) => meal.categoryIds.indexOf(catId) >= 0
   );
-  console.log(displayedMeals);
+  console.log("displayedMeals : ", displayedMeals.length);
   // console.log(displayedMeals[0].imageUrl);
 
 

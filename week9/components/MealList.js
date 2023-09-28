@@ -1,59 +1,3 @@
-// import React from "react";
-// import { FlatList, View, StyleSheet } from "react-native";
-
-// const MealList = ({route, navigation}) => {
-//   const renderMealItem = (itemData) => {
-//     return (
-//       //เขียนโค้ดเพิ่ม
-//       <MealItem
-//         title={itemData.item.title}
-//         duration={itemData.item.duration}
-//         complexity={itemData.item.complexity}
-//         affordability={itemData.item.affordability}
-//         image={itemData.item.imageUrl}
-//         onSelectMeal={() => {
-//           // เขียนโค้ดเพิ่ม
-//           //("MealDetail", {...}) --> การเปลี่ยนหน้าจอ โดย ส่งค่าพารามิเตอร์
-//           navigation.navigate("MealDetail", { categoryImage : itemData.item.imageUrl , categoryTitle: itemData.item.title , categorySteps: itemData.item.steps})
-//           console.log("PAGE: MealLists.js --> "+"categoryId : " + itemData.item.id , "categoryTitle : " + itemData.item.title)
-//         }}
-//       />
-//     );
-//   };
-
-//   // ...รับข้อมูล id ของประเภทอาหาราจากหน้า CategoriesScreen...
-//   const catId = route.params.categoryId;
-//   console.log(catId);
-
-//   const displayedMeals = MEALS.filter(
-//     (meal) => meal.categoryIds.indexOf(catId) >= 0
-//   );
-//   console.log(displayedMeals);
-
-//   return (
-//     <View style={styles.list}>
-//       <FlatList
-//         //เขียนโค้ดเพิ่ม
-//         style={{ width: "100%" }}
-//         data={displayedMeals}
-//         renderItem={renderMealItem}
-//       />
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   list: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-// });
-
-// export default MealList;
-
-
-
 import React from "react";
 import {
   View,
@@ -63,8 +7,10 @@ import {
   Platform,
   FlatList,
 } from "react-native";
-import { CATEGORIES, MEALS } from "../data/dummy-data";
+// import { CATEGORIES, MEALS } from "../data/dummy-data";
+import { useSelector } from "react-redux"; 
 import MealItem from "../components/MealItem";
+
 
 const MealList = ({route, navigation}) => {
   const renderMealItem = (itemData) => {
@@ -78,7 +24,11 @@ const MealList = ({route, navigation}) => {
         onSelectMeal={() => {
           // เขียนโค้ดเพิ่ม
           //("MealDetail", {...}) --> การเปลี่ยนหน้าจอ โดย ส่งค่าพารามิเตอร์
-          navigation.navigate("MealDetail", { categoryImage : itemData.item.imageUrl , categoryTitle: itemData.item.title , categorySteps: itemData.item.steps})
+          navigation.navigate("MealDetail", { 
+            categoryImage : itemData.item.imageUrl , 
+            mealTitle: itemData.item.title , 
+            categorySteps: itemData.item.steps,
+            mealId : itemData.item.id })
           console.log("PAGE: MealList.js --> "+"categoryId : " + itemData.item.id , "categoryTitle : " + itemData.item.title)
         }}
       />
@@ -90,15 +40,12 @@ const MealList = ({route, navigation}) => {
     );
   };
 
-  // ...รับข้อมูล id ของประเภทอาหาราจากหน้า CategoriesScreen...
-  // const catId = route.params.categoryId;
-  // const catId = route.params.categoryId;
-  // console.log(catId);
 
-  const displayedMeals = MEALS.filter(
-    (meal) => meal.categoryIds.indexOf('c2') >= 0
-  );
-  console.log(displayedMeals);
+  const availableMeals = useSelector(state => state.meals.favoriteMeals)
+
+  const displayedMeals = availableMeals;
+  
+  console.log("displayedMealsFav",displayedMeals.length);
   // console.log(displayedMeals[0].imageUrl);
 
 

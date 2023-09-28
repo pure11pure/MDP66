@@ -7,8 +7,13 @@ import MealDetailScreen from "../screens/MealDetailScreen";
 import FiltersScreen from "../screens/FiltersScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+// import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderButton from "../components/CustomHeaderButton";
+import { useDispatch } from "react-redux";
+import { toggleFavorite } from "../store/actions/mealsAction"
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -20,11 +25,20 @@ const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 
+
+
 function MealNavigator() {
+
+  const dispatch = useDispatch();
+  const toggleFavoriteHandler = (mealId) => {
+    dispatch(toggleFavorite(mealId));
+  };
+
   const navStyle = {
     headerStyle: { backgroundColor: "#4a148c" },
     headerTintColor: "white",
   };
+
   return (<Stack.Navigator>
     <Stack.Screen
       name="Categories"
@@ -48,6 +62,11 @@ function MealNavigator() {
       options={({ route }) => ({
         title: route.params.mealTitle,
         ...navStyle,
+        headerRight: () => (
+          <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+            <Item title="Tab_1" iconName="ios-star" onPress={() => { toggleFavoriteHandler(route.params.mealId) }} />
+          </HeaderButtons>
+        ),
       })}
     />
   </Stack.Navigator>
@@ -100,7 +119,7 @@ function TabNavigator() {
           // headerShown: false,
           headerStyle: { backgroundColor: "#4a148c" },
           tabBarIcon: ({ color, size }) => {
-            return <AntDesign name="star" size={size} color={color} />;
+            return <Ionicons name="ios-star" size={size} color={color} />;
           },
         }
       } />
@@ -115,11 +134,11 @@ export default function MyNavigator() {
     <NavigationContainer>
       {/* รายละเอียดของ Navigator หลัก (MainNavigator) */}
       <Drawer.Navigator screenOptions={{ drawerActiveTintColor: "orange" }} >
-        <Drawer.Screen name="Meals" 
-          component={TabNavigator} 
+        <Drawer.Screen name="Meals"
+          component={TabNavigator}
           options={{ headerShown: false }} />
-        <Drawer.Screen name="Filters" 
-          component={FiltersScreen} 
+        <Drawer.Screen name="Filters"
+          component={FiltersScreen}
           options={{ headerShown: false }} />
       </Drawer.Navigator>
 

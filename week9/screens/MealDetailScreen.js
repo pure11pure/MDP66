@@ -1,19 +1,20 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, Image } from "react-native";
+import { View, Text, Button, StyleSheet, Image , ScrollView } from "react-native";
 import { MEALS } from "../data/dummy-data";
 
 const MealDetailScreen = ({route, navigation}) => {
+  console.log("|PAGE : MealsDetailScreen.js-----------------------------------------|")
   // เขียนโค้ดเพิ่ม เพื่อดึงข้อมูลเกี่ยวกับเมนูอาหารที่ผู้ใช้เลือกเอาไว้
-  const menu = route.params.categoryTitle;
-  console.log("MealDEtail: menu -->  "+menu);
+
+  const menu = route.params.mealTitle;
+  console.log("MealDEtail: 'menu' -->  "+menu + " | mealId : " + route.params.mealId);
   const step = route.params.categorySteps;
-  console.log("MealDEtail: step -->  "+step);
+  // console.log("MealDEtail: 'step' -->  "+step);
   const image = route.params.categoryImage;
-  console.log("MealDEtail: img -->  "+image);
+  // console.log("MealDEtail: 'img' -->  "+image);
   
   return (
-    <View style={styles.screen}>
-      <Text>{menu}</Text>
+    <ScrollView  style={styles.screen}>
       <Image source={{ uri: route.params.categoryImage }} style={styles.image}/>
       {step.map((step, index) => (
         <Text key={index} style={styles.step}>
@@ -30,20 +31,20 @@ const MealDetailScreen = ({route, navigation}) => {
         }}
         
       />
-    </View>
+    </ScrollView >
   );
 };
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
   },
   image: {
-    width: 300,
-    height: 200,
-    marginVertical:20
+    width: "100%",
+    height: 240,
+    marginVertical:0
   },
   step:{
     marginVertical:10

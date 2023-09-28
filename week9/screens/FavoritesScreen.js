@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import MealList from "../components/MealList";
 
+
 const FavoritesScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>

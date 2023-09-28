@@ -20,8 +20,8 @@ const CategoriesScreen = ({ navigation }) => {
         onSelect={() => {
           // เขียนโค้ดเพิ่ม 
           //("CategoryMeals", {...}) --> การเปลี่ยนหน้าจอ โดย ส่งค่าพารามิเตอร์
-          navigation.navigate("CategoryMeals", { categoryId : itemData.item.id , categoryTitle: itemData.item.title,  })
-          console.log("PAGE: CategoriesScreen.js --> "+"categoryId : " + itemData.item.id , "categoryTitle : " + itemData.item.title)
+          navigation.navigate("CategoryMeals", { categoryId : itemData.item.id , categoryTitle: itemData.item.title,})
+          console.log("----->SEND : CategoryMealsScreen.js --> "+"categoryId : " + itemData.item.id , "| categoryTitle : " + itemData.item.title)
         }}
       />
 
@@ -33,6 +33,7 @@ const CategoriesScreen = ({ navigation }) => {
     );
   };
 
+  console.log("|PAGE : CategoriesScreen.js -----------------------------------------|")
   return (
     <FlatList 
     // คือข้อมูลที่เราจะแสดงผลในรายการ ในที่นี้คือ CATEGORIES ที่เรา import มาจาก dummy-data.js
@@ -47,6 +48,8 @@ const CategoriesScreen = ({ navigation }) => {
     //   <Text>Categories Screen555</Text>
     // </View>
   );
+
+
 };
 
 const styles = StyleSheet.create({
