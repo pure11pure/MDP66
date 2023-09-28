@@ -1,36 +1,53 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, Image , ScrollView } from "react-native";
+import { View, Text, Button, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 import { MEALS } from "../data/dummy-data";
 
-const MealDetailScreen = ({route, navigation}) => {
+const MealDetailScreen = ({ route, navigation }) => {
   console.log("|PAGE : MealsDetailScreen.js-----------------------------------------|")
   // เขียนโค้ดเพิ่ม เพื่อดึงข้อมูลเกี่ยวกับเมนูอาหารที่ผู้ใช้เลือกเอาไว้
 
   const menu = route.params.mealTitle;
-  console.log("MealDEtail: 'menu' -->  "+menu + " | mealId : " + route.params.mealId);
-  const step = route.params.categorySteps;
+  console.log("MealDEtail: 'menu' -->  " + menu + " | mealId : " + route.params.mealId);
+  const steps = route.params.mealSteps;
+  // console.log("MealDEtail: 'step' -->  "+step);
+  const ingredients = route.params.mealIngredients;
   // console.log("MealDEtail: 'step' -->  "+step);
   const image = route.params.categoryImage;
   // console.log("MealDEtail: 'img' -->  "+image);
-  
+
+
+
   return (
-    <ScrollView  style={styles.screen}>
-      <Image source={{ uri: route.params.categoryImage }} style={styles.image}/>
-      {step.map((step, index) => (
-        <Text key={index} style={styles.step}>
+    <ScrollView style={styles.screen}>
+      <Image source={{ uri: route.params.categoryImage }} style={styles.image} />
+      <View style={styles.shortDetail}>
+        <Text>{route.params.shortDuration}m</Text>
+        <Text>{route.params.shortComplexity.toUpperCase()}</Text>
+        <Text>{route.params.shortAffordability.toUpperCase()}</Text>
+      </View>
+      <Text style={styles.headerText}>Ingredients</Text>
+      {ingredients.map((step, index) => (
+        <Text key={index} style={styles.detailText}>
           {index + 1}. {step}
         </Text>
       ))}
-      <Button
-        // style={styles.btn_back}
-        title="Go Back to Categories"
+
+      <Text style={styles.headerText}>Steps</Text>
+      {steps.map((step, index) => (
+        <Text key={index} style={styles.detailText}>
+          {index + 1}. {step}
+        </Text>
+      ))}
+      <TouchableOpacity
         onPress={() => {
           // เขียนโค้ดเพิ่ม
           //("MealDetail", {...}) --> การเปลี่ยนหน้าจอ โดย ส่งค่าพารามิเตอร์
           navigation.navigate("Categories")
         }}
-        
-      />
+        style={styles.btnBack}
+      >
+        <Text style={styles.btnText}>Go Back to Categories</Text>
+      </TouchableOpacity>
     </ScrollView >
   );
 };
@@ -43,15 +60,40 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 240,
-    marginVertical:0
+    height: 200,
+    marginVertical: 0
   },
-  step:{
-    marginVertical:10
+  shortDetail: {
+    flexDirection: "row",
+    paddingHorizontal: 40,
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 1
   },
-  // btn_back:{
-  //   margin:50
-  // },
+  btnBack: {
+    backgroundColor: "#2296f3",
+    paddingVertical: 10,
+    alignItems: "center",
+    width: 250,
+    alignSelf: "center", // จัดให้ปุมอยู่กลางแนวนอน
+    marginBottom: 80,
+    marginTop: 20
+  },
+  btnText: {
+    color: "#fff",
+    fontSize: 14
+  },
+  headerText: {
+    fontWeight: "bold",
+    fontSize: 18,
+    alignSelf: "center",
+    marginTop: 10
+  },
+  detailText: {
+    marginVertical: 10,
+    paddingHorizontal: 20
+  },
+
 
 });
 
