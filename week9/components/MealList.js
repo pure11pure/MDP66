@@ -27,8 +27,12 @@ const MealList = ({route, navigation}) => {
           navigation.navigate("MealDetail", { 
             categoryImage : itemData.item.imageUrl , 
             mealTitle: itemData.item.title , 
-            categorySteps: itemData.item.steps,
-            mealId : itemData.item.id })
+            mealSteps: itemData.item.steps,
+            mealIngredients : itemData.item.ingredients,
+            mealId : itemData.item.id,
+            shortDuration : itemData.item.duration,
+            shortComplexity : itemData.item.complexity,
+            shortAffordability : itemData.item.affordability})
           console.log("PAGE: MealList.js --> "+"categoryId : " + itemData.item.id , "categoryTitle : " + itemData.item.title)
         }}
       />

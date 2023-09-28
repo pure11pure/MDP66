@@ -22,8 +22,8 @@ const MealDetailScreen = ({ route, navigation }) => {
       <Image source={{ uri: route.params.categoryImage }} style={styles.image} />
       <View style={styles.shortDetail}>
         <Text>{route.params.shortDuration}m</Text>
-        <Text>{route.params.shortComplexity.toUpperCase()}</Text>
-        <Text>{route.params.shortAffordability.toUpperCase()}</Text>
+        <Text>{route.params.shortComplexity}</Text>
+        <Text>{route.params.shortAffordability}</Text>
       </View>
       <Text style={styles.headerText}>Ingredients</Text>
       {ingredients.map((step, index) => (
