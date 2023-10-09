@@ -66,6 +66,20 @@ class StudentInfo extends Component {
             });
     }
 
+    deleteSubject() {
+        const delSubjDoc = firebase
+            .firestore()
+            .collection("students")
+            .doc(this.state.key);
+        delSubjDoc.delete().then((res) => {
+            this.props.navigation.navigate("StudentList")
+            Alert.alert(
+                "Deleting Alert",
+                "The subject was deleted!! Pls check your DB!!"
+            );
+        });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -92,7 +106,7 @@ class StudentInfo extends Component {
                 <View style={styles.button}>
                     <Button title="Update Student" onPress={() => this.updateStudent()} />
                 </View>
-                <Button title="View Student" onPress={() => this.props.navigation.navigate("StudentList")} />
+                <Button title="Delete Student" onPress={() => this.deleteSubject()} />
 
             </View>
         );
